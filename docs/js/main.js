@@ -184,12 +184,16 @@ var undo_button = document.getElementById("tb_undo")
 var redo_button = document.getElementById("tb_redo")
 undo_button.addEventListener(ondown_key, e => {
   e.preventDefault();
+  if (timer) {
+    clearInterval(timer);
+    count = 0;
+  }
   timer = setInterval(() => {
     count++;
-    if(count>20){
+    if(count>5){
       pu.undo();
     }
-  }, 20);
+  }, 80);
 }, {passive: false});
 
 undo_button.addEventListener(onup_key, e => {
@@ -208,12 +212,16 @@ undo_button.addEventListener(onleave_key, e => {
 
 redo_button.addEventListener(ondown_key, e => {
   e.preventDefault();
+  if (timer) {
+    clearInterval(timer);
+    count = 0;
+  }
   timer = setInterval(() => {
     count++;
-    if(count>20){
+    if(count>5){
       pu.redo();
     }
-  }, 20);
+  }, 80);
 }, {passive: false});
 
 redo_button.addEventListener(onup_key, e => {
